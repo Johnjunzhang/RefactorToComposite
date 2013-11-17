@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndCondition.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookNameCondition.cs" />
     <Compile Include="BookRepository.cs" />

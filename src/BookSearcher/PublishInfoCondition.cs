@@ -1,21 +1,12 @@
 ﻿namespace BookSearcher
 {
-    public class PublishInfoCondition : IBookMatchCondition
+    public class PublishInfoCondition : AndCondition
     {
-        private readonly PublishDateCondition m_publishDate;
-        private readonly EditionCondition m_edition;
-
         public PublishInfoCondition(
             PublishDateCondition publishDate, 
             EditionCondition edition)
+            : base(publishDate, edition)
         {
-            m_publishDate = publishDate;
-            m_edition = edition;
-        }
-
-        public bool IsMatch(Book book)
-        {
-            return m_edition.IsMatch(book) && m_publishDate.IsMatch(book);
         }
     }
 }
