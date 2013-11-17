@@ -29,6 +29,21 @@ namespace BookSearcher.Test
             AssertSearchResult(new[] { "978-1617291081" }, result);
         }
 
+        [Fact]
+        public void should_search_by_name_and_publish_info()
+        {
+            var repository = CreateRepository();
+            var publishInfoCondition = new PublishInfoCondition(
+                new PublishDateCondition(
+                    new DateTime(2012, 11, 1),
+                    new DateTime(2012, 12, 31)),
+                new EditionCondition(1));
+            var nameCondition = new BookNameCondition("PowerShell");
+            List<Book> result = repository.Find(nameCondition, publishInfoCondition);
+
+            AssertSearchResult(new[] { "978-1617291081" }, result);
+        }
+
         private static BookRepository CreateRepository()
         {
             var repository = new BookRepository();
