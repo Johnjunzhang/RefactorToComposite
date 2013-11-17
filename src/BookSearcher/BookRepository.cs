@@ -12,22 +12,9 @@ namespace BookSearcher
             m_books.Add(book);
         }
 
-        public List<Book> Find(BookNameCondition nameCondition)
+        public List<Book> Find(IBookMatchCondition condition)
         {
-            return m_books.Where(nameCondition.IsMatch).ToList();
+            return m_books.Where(condition.IsMatch).ToList();
         }
-
-        public List<Book> Find(PublishInfoCondition publishInfoCondition)
-        {
-            return m_books.Where(publishInfoCondition.IsMatch).ToList();
-        } 
-
-        public List<Book> Find(BookNameCondition nameCondition, 
-            PublishInfoCondition publishInfoCondition)
-        {
-            return m_books.Where(book => 
-                nameCondition.IsMatch(book) 
-                && publishInfoCondition.IsMatch(book)).ToList();
-        } 
     }
 }

@@ -19,11 +19,9 @@ namespace BookSearcher.Test
         public void should_search_by_publish_info()
         {
             var repository = CreateRepository();
-            var publishInfoCondition = new PublishInfoCondition(
-                new PublishDateCondition(
-                    new DateTime(2012, 11, 1),
-                    new DateTime(2012, 12, 31)),
-                new EditionCondition(1));
+            var publishInfoCondition = (IBookMatchCondition) new AndCondition(new PublishDateCondition(
+                new DateTime(2012, 11, 1),
+                new DateTime(2012, 12, 31)), new EditionCondition(1));
             List<Book> result = repository.Find(publishInfoCondition);
 
             AssertSearchResult(new[] { "978-1617291081" }, result);
@@ -33,13 +31,11 @@ namespace BookSearcher.Test
         public void should_search_by_name_and_publish_info()
         {
             var repository = CreateRepository();
-            var publishInfoCondition = new PublishInfoCondition(
-                new PublishDateCondition(
-                    new DateTime(2012, 11, 1),
-                    new DateTime(2012, 12, 31)),
-                new EditionCondition(1));
+            var publishInfoCondition = (IBookMatchCondition) new AndCondition(new PublishDateCondition(
+                new DateTime(2012, 11, 1),
+                new DateTime(2012, 12, 31)), new EditionCondition(1));
             var nameCondition = new BookNameCondition("PowerShell");
-            List<Book> result = repository.Find(nameCondition, publishInfoCondition);
+            List<Book> result = repository.Find(new AndCondition(nameCondition, publishInfoCondition));
 
             AssertSearchResult(new[] { "978-1617291081" }, result);
         }
