@@ -2,16 +2,16 @@
 
 namespace BookSearcher
 {
-    public class AndCondition : LogicCondition
+    public class OrCondition : LogicCondition
     {
-        public AndCondition(params IBookMatchCondition[] conditions)
+        public OrCondition(params IBookMatchCondition[] conditions)
             : base(conditions)
         {
         }
 
         public override bool IsMatch(Book book)
         {
-            return Conditions.All(condition => condition.IsMatch(book));
+            return Conditions.Any(condition => condition.IsMatch(book));
         }
     }
 }

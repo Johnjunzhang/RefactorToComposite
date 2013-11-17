@@ -38,6 +38,8 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookNameCondition.cs" />
     <Compile Include="BookRepository.cs" />
+    <Compile Include="LogicCondition.cs" />
+    <Compile Include="OrCondition.cs" />
     <Compile Include="PublishDateCondition.cs" />
     <Compile Include="EditionCondition.cs" />
     <Compile Include="IBookMatchCondition.cs" />
